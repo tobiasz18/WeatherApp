@@ -10,17 +10,23 @@ export class WeatherService {
     url: string;
 
     constructor(private httpClient: HttpClient) { }
-
-    public sendGETRequestWithParameters(lon, lat) {
+    //lon, lat
+    sendGETRequestWithParameters(log, lat) {
         let url = 'https://api.openweathermap.org/data/2.5/weather';
         let keyApi = '148ab12495a9f1a901fe6056090a7487';
 
         let params = new HttpParams();
-        params = params.append('lon', lon);
+        params = params.append('lon', log);
         params = params.append('lat', lat);
         params = params.append('appid', keyApi);
 
-        return this.httpClient.get(url, { params: params });
+        return this.httpClient.get<PersonData>(url, { params: params });
     }
 
+ 
+
+}
+
+ interface PersonData {
+    name?: string;
 }
