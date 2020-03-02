@@ -18,6 +18,7 @@ export class WeatherService {
         let params = new HttpParams();
         params = params.append('lon', log);
         params = params.append('lat', lat);
+        params = params.append('units', 'metric');
         params = params.append('appid', keyApi);
 
         return this.httpClient.get<PersonData>(url, { params: params });

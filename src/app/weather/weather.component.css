@@ -1,12 +1,16 @@
+/* start  top bar  */
+
 .bg-light {
     background-image: linear-gradient( #00BCD4, #03A9F4);
 }
 
 .navbar-light .navbar-text {
     color: #fff;
-    font-weight: 600;
 }
 
+/* end top bar  */
+
+/* start form (input button) */
 .input-group {
     max-width: 600px;
 }
@@ -39,4 +43,33 @@
     border-color: #24ca9c;
     font-size: 13px;
     box-shadow: 0px 1px 7px 1px rgb(202, 205, 208);
+}
+
+/* end form (input button) */
+
+/* start layout statistic -- section 1 */ 
+
+.section1 {
+    background:#46A7EE;
+    color: #fff;
+    font-weight: 500;
+}
+
+.desc {
+    color: #ffeb00; 
+    font-size: 21px;
+}
+
+.date {
+    font-size: 14px;
+}
+
+.degrees {
+    line-height: 2;
+    font-size: 20px;
+    color: #ffeb00; 
+}
+
+img {
+    width: 140px;
 }
