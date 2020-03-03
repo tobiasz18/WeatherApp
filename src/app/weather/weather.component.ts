@@ -25,19 +25,27 @@ export class WeatherComponent implements OnInit {
             const longitude = position.coords.longitude;
             const latitude = position.coords.latitude;
 
-            this.api.sendGETRequestWithParameters(longitude, latitude).subscribe((data: any) => {
+            this.api.sendGETRequestByGeoCoords(longitude, latitude).subscribe((data: any) => {
               //  this.weather = data;
              //   console.log(data)
                
                 this.weather = data;
                 this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
-                var date = new Date(data.dt * 1000);
-
-                console.log(data, date)
+            
             })
         });
     }
+
+    getByCityName(city) {
+        console.log('test', city.value)
+        this.api.sendGETRequestByCityName(city.value).subscribe((data: any) => {
+            this.weather = data;
+            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            
+        })
+    }
+
 }
 
 
