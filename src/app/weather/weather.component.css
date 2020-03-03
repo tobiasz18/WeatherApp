@@ -72,6 +72,13 @@
     right: 40px;
     top: 0px;
 }
+imageOriginal img {
+    width: 120px;
+}
+
+.imageMirror img {
+    width: 140px;
+}
 
 .desc {
     color: #ffeb00; 
@@ -88,6 +95,3 @@
     color: #ffeb00; 
 }
 
-img {
-    width: 140px;
-}

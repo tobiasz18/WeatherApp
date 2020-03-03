@@ -16,9 +16,7 @@ export class WeatherComponent implements OnInit {
 
     ngOnInit() {
         this.getLocation();
-
     }
-
 
     getLocation() {
         if (!navigator.geolocation) {
@@ -43,12 +41,7 @@ export class WeatherComponent implements OnInit {
         })
     }
 
-    getByCityNameHourly(city) {
-        this.api.sendGETRequestByCityName(city.value, this.urlData).subscribe((data: any) => {
-            this.WeatherHourlu = data;
-            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        })
-    }
+ 
 
 }
 
