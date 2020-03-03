@@ -20,62 +20,10 @@ export class LineChartComponent implements OnInit {
     lineChartLegend = true;
     lineChartPlugins = [];
     lineChartType = 'line';
-
-
-
-
-    constructor(private api: WeatherService) { }
-
-    ngOnInit() {
-        //   this.getByCityName('Paris')
-        this.getByCityName('Paris')
-    }
-
-    ngDoCheck() {
-
-    }
-
-    getByCityName(city) {
-        this.api.sendGETRequestByCityName(city, this.urlHourlyData).subscribe((data: any) => {
-            this.WeatherHourlu = data.list;
-            // this.img = `http://openweathermap.org/img/wn/${data[0].icon}@2x.png`;
-
-            console.log(this.WeatherHourlu);
-            let x = []
-            for (let i = 0; i < 6; i++) {
-
-
-                x = [...x, data.list[i].dt]
-
-                //.toString().slice(4, 6)
-                console.log('xv', x)
-            }
-            this.barChartData = [{ data: x, label: 'Series A' }];
-            console.log(this.barChartData)
-
-
-        })
-
-
-    }
-    /*
-        chartData = [
-            { data: [330, 600, 260, 700], label: 'Account A' },
-            { data: [120, 455, 100, 340], label: 'Account B' },
-            { data: [45, 67, 800, 500], label: 'Account C' }
-        ];
-    
-        chartLabels = ['January', 'February', 'Mars', 'April'];
-    
-    */
-
-
-    public barChartData = [
+    barChartData = [
         { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }
     ];
-
     lineChartLabels: Label[] = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
-
     lineChartOptions = {
         responsive: true,
         scales: { xAxes: [{}], yAxes: [{}] },
@@ -89,7 +37,6 @@ export class LineChartComponent implements OnInit {
             }
         }
     };
-
     lineChartColors: Color[] = [
         {
             borderColor: 'black',
@@ -97,6 +44,45 @@ export class LineChartComponent implements OnInit {
         },
     ];
 
+    constructor(private api: WeatherService) { }
 
+    ngOnInit() {
+        //   this.getByCityName('Paris')
+        this.getByCityName('Potok górny')
+    }
+
+    getByCityName(city) {
+        this.api.sendGETRequestByCityName(city, this.urlHourlyData).subscribe((data: any) => {
+            this.WeatherHourlu = data.list;
+            // this.img = `http://openweathermap.org/img/wn/${data[0].icon}@2x.png`;
+
+            console.log(this.WeatherHourlu);
+            let Labels = []
+            let ChartData = []
+            for (let i = 0; i < 6; i++) {
+                var d = new Date(data.list[i].dt * 1000);    
+                var h = this.addZero(d.getUTCHours());
+                var m = this.addZero(d.getUTCMinutes());
+
+                var template = [h + ":" + m ];     
+                let degreesTemplate = data.list[i].main.temp.toFixed(0);
+
+                Labels = [...Labels, ...template];
+
+                ChartData = [...ChartData, degreesTemplate ]
+            }
+            this.barChartData = [{ data: ChartData, label: 'Series A' }];
+            this.lineChartLabels = [...Labels];
+        })
+    }
+
+
+     addZero(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+    }
 
 }
+
