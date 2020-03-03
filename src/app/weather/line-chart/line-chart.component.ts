@@ -11,13 +11,23 @@ import { Color, Label } from 'ng2-charts';
 export class LineChartComponent {
 
   lineChartData: ChartDataSets[] = [
-    { data: [13, 14, 15, 18, 14, 14], label: 'Crude oil prices' },
+    { data: [13, 14, 15, 18, 14, -3], label: 'Crude oil prices' },
   ];
 
   lineChartLabels: Label[] = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 
   lineChartOptions = {
     responsive: true,
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        font: {
+          size: 20,
+        }
+      }
+    }
   };
 
   lineChartColors: Color[] = [

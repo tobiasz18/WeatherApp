@@ -15,10 +15,11 @@
 
     <section>
         <div class="row py-4 text-center section1">
-            <div class="col-6 mx-auto text-right pt-3">
-                <span class="temp ">
-                    <img src="{{ img }}" alt="01d.png" />
-                </span>
+            <div class="col-6 mx-auto text-right pt-3 image-container">
+         
+                    <div class="imageOriginal" style="position: absolute;"><img src="{{ img }}" alt="01d.png" /></div>
+                    <div class="imageMirror" style="position: absolute;"><img src="{{ img }}" alt="01d.png" /></div>
+           
             </div>
             <div class="col-6 mx-auto text-left pt-3">
                 <p class="text-capitalize m-0 desc">
@@ -34,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-md-7 col-sm-12 my-3" style="height: 400px; background:#FFFFFF;">
-              <app-line-chart></app-line-chart>
+                <app-line-chart></app-line-chart>
             </div>
 
             <div class="col-md-5 col-sm-12  my-3 pr-0" style="height: 400px; ">

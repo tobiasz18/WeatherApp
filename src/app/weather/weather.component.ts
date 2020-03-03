@@ -7,15 +7,19 @@ import { WeatherService } from '../weather.service'
     styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent implements OnInit {
+    urlData = 'https://api.openweathermap.org/data/2.5/weather'; // Current weather data
+    urlHourlyData = 'pro.openweathermap.org/data/2.5/forecast/hourly';  // Hourly forecast
     weather;
+    WeatherHourlu;
     img;
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
-        this.getLocation()
+        this.getLocation();
+
     }
 
-    
+
     getLocation() {
         if (!navigator.geolocation) {
             console.log('No support for geolocation')
@@ -25,24 +29,24 @@ export class WeatherComponent implements OnInit {
             const longitude = position.coords.longitude;
             const latitude = position.coords.latitude;
 
-            this.api.sendGETRequestByGeoCoords(longitude, latitude).subscribe((data: any) => {
-              //  this.weather = data;
-             //   console.log(data)
-               
+            this.api.sendGETRequestByGeoCoords(longitude, latitude, this.urlData).subscribe((data: any) => {
                 this.weather = data;
                 this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-
-            
             })
         });
     }
 
     getByCityName(city) {
-        console.log('test', city.value)
-        this.api.sendGETRequestByCityName(city.value).subscribe((data: any) => {
+        this.api.sendGETRequestByCityName(city.value, this.urlData).subscribe((data: any) => {
             this.weather = data;
             this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-            
+        })
+    }
+
+    getByCityNameHourly(city) {
+        this.api.sendGETRequestByCityName(city.value, this.urlData).subscribe((data: any) => {
+            this.WeatherHourlu = data;
+            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         })
     }
 

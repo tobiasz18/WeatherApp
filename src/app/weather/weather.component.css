@@ -55,6 +55,24 @@
     font-weight: 500;
 }
 
+.image-container {
+    position: relative;
+}
+
+.imageOriginal {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    background: rgba(70, 167, 238, 0.9);
+    width: 220px;
+}
+
+.imageMirror {
+    position: absolute;
+    right: 40px;
+    top: 0px;
+}
+
 .desc {
     color: #ffeb00; 
     font-size: 21px;

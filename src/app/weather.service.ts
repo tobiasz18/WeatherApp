@@ -7,27 +7,28 @@ import { HttpParams } from "@angular/common/http";
     providedIn: 'root'
 })
 export class WeatherService {
-    url: string;
+    keyApi = '148ab12495a9f1a901fe6056090a7487';
 
     constructor(private httpClient: HttpClient) { }
     //lon, lat
-    sendGETRequestWithParameters(log, lat) {
-        let url = 'https://api.openweathermap.org/data/2.5/weather';
-        let keyApi = '148ab12495a9f1a901fe6056090a7487';
-
+    sendGETRequestByGeoCoords(log, lat, url:string) {
         let params = new HttpParams();
         params = params.append('lon', log);
         params = params.append('lat', lat);
         params = params.append('units', 'metric');
-        params = params.append('appid', keyApi);
+        params = params.append('appid', this.keyApi);
 
-        return this.httpClient.get<PersonData>(url, { params: params });
+        return this.httpClient.get(url, { params: params });
     }
 
- 
+    sendGETRequestByCityName(city: string ,url:string) {
+        let params = new HttpParams();
+        params = params.append('q', city);
+        params = params.append('units', 'metric');
+        params = params.append('appid', this.keyApi);
 
+        return this.httpClient.get(url, { params: params });
+    }
 }
 
- interface PersonData {
-    name?: string;
-}
+
