@@ -11,6 +11,7 @@
 /* end top bar  */
 
 /* start form (input button) */
+
 .input-group {
     max-width: 600px;
 }
@@ -47,10 +48,10 @@
 
 /* end form (input button) */
 
-/* start layout statistic -- section 1 */ 
+/* start layout statistic -- first section col-12 (main statistics) */
 
-.section1 {
-    background:#46A7EE;
+.col12_main {
+    background: #46A7EE;
     color: #fff;
     font-weight: 500;
 }
@@ -72,6 +73,7 @@
     right: 40px;
     top: 0px;
 }
+
 imageOriginal img {
     width: 120px;
 }
@@ -81,7 +83,7 @@ imageOriginal img {
 }
 
 .desc {
-    color: #ffeb00; 
+    color: #ffeb00;
     font-size: 21px;
 }
 
@@ -92,6 +94,57 @@ imageOriginal img {
 .degrees {
     line-height: 2;
     font-size: 20px;
-    color: #ffeb00; 
+    color: #ffeb00;
 }
 
+/* end layout statistic -- first section col-12 (main statistics) */
+
+/* start layout statistic -- second section col-6 ( extend statistics  with chart  ) */
+
+.sectionOne {
+    height: 100px;
+    background: #FFFFFF;
+}
+
+.sectionOne>div {
+    flex: 1;
+    font-size: 12px;
+    line-height: 0;
+    color: #6d6d6da8;
+}
+
+.secondDiv {
+    position: relative;
+}
+
+.secondDiv:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 50%;
+    width: 2px;
+    background: #e2f0fd;
+}
+
+.thirdDiv {
+    position: relative;
+}
+
+.thirdDiv:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 50%;
+    width: 1.5px;
+    background: #e2f0fd;
+}
+
+.sectionOne>div span {
+    padding-left: 6px;
+}
+
+.sectionOne div:last-child>span {
+    padding-top: 8px;
+}
+
+/* end layout statistic -- second section col-6 ( extend statistics  with chart ) */
