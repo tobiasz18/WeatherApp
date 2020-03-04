@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
 import { WeatherService } from '../../weather.service';
+
 
 
 @Component({
@@ -12,6 +13,8 @@ import { WeatherService } from '../../weather.service';
 })
 
 export class LineChartComponent implements OnInit {
+    @Input() childFn: string
+
     urlData = 'https://api.openweathermap.org/data/2.5/weather'; // Current weather data
     urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
     // weather;
@@ -44,27 +47,29 @@ export class LineChartComponent implements OnInit {
         },
     ];
 
-    constructor(private api: WeatherService) { }
+    @Input('city') cityName: string;
 
-    ngOnInit() {
-        //   this.getByCityName('Paris')
-        this.getByCityName('Potok górny')
+    constructor(private api: WeatherService) {}
+    
+    ngOnInit() {}
+
+    ngOnChanges(e) {
+        console.log('currentValue', e)
+        this.getByCityNames(e.cityName.currentValue)
     }
 
-    getByCityName(city) {
+    getByCityNames(city) {
         this.api.sendGETRequestByCityName(city, this.urlHourlyData).subscribe((data: any) => {
             this.WeatherHourlu = data.list;
-            // this.img = `http://openweathermap.org/img/wn/${data[0].icon}@2x.png`;
 
-            console.log(this.WeatherHourlu);
             let Labels = []
             let ChartData = []
             for (let i = 0; i < 6; i++) {
-                var d = new Date(data.list[i].dt * 1000);    
-                var h = this.addZero(d.getUTCHours());
-                var m = this.addZero(d.getUTCMinutes());
+                let d = new Date(data.list[i].dt * 1000);    
+                let h = this.addZero(d.getUTCHours());
+                let m = this.addZero(d.getUTCMinutes());
 
-                var template = [h + ":" + m ];     
+                let template = [h + ":" + m ];     
                 let degreesTemplate = data.list[i].main.temp.toFixed(0);
 
                 Labels = [...Labels, ...template];
@@ -73,9 +78,9 @@ export class LineChartComponent implements OnInit {
             }
             this.barChartData = [{ data: ChartData, label: 'Series A' }];
             this.lineChartLabels = [...Labels];
+            console.log('WeatherHourlu', city, data)
         })
     }
-
 
      addZero(i) {
         if (i < 10) {
@@ -83,6 +88,5 @@ export class LineChartComponent implements OnInit {
         }
         return i;
     }
-
 }
 

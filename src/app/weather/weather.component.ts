@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service'
+import { LineChartComponent } from './line-chart/line-chart.component';
+
 
 @Component({
     selector: 'app-weather',
@@ -12,10 +14,11 @@ export class WeatherComponent implements OnInit {
     weather;
     WeatherHourlu;
     img;
+    currentCity; // variable for child component (line-chart)
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
-        this.getLocation();
+        this.getLocation();  
     }
 
     getLocation() {
@@ -30,19 +33,19 @@ export class WeatherComponent implements OnInit {
             this.api.sendGETRequestByGeoCoords(longitude, latitude, this.urlData).subscribe((data: any) => {
                 this.weather = data;
                 this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                console.log("DATA", data)
+                this.currentCity = data.name; // for child component
             })
         });
     }
 
     getByCityName(city) {
-        this.api.sendGETRequestByCityName(city.value, this.urlData).subscribe((data: any) => {
+        this.api.sendGETRequestByCityName(city, this.urlData).subscribe((data: any) => {
             this.weather = data;
-            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;      
         })
+        this.currentCity = city; // for child component
     }
-
- 
-
 }
 
 
