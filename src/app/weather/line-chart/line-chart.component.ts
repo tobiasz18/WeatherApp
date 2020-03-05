@@ -15,11 +15,8 @@ import { WeatherService } from '../../weather.service';
 export class LineChartComponent implements OnInit {
     @Input() childFn: string
 
-    urlData = 'https://api.openweathermap.org/data/2.5/weather'; // Current weather data
     urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
-    // weather;
     WeatherHourlu;
-    img;
     lineChartLegend = true;
     lineChartPlugins = [];
     lineChartType = 'line';
@@ -78,7 +75,6 @@ export class LineChartComponent implements OnInit {
             }
             this.barChartData = [{ data: ChartData, label: 'Series A' }];
             this.lineChartLabels = [...Labels];
-            console.log('WeatherHourlu', city, data)
         })
     }
 

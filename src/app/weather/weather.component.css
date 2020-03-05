@@ -64,8 +64,9 @@
     position: absolute;
     right: 0;
     z-index: 1;
-    background: rgba(70, 167, 238, 0.9);
+    background: rgba(70, 167, 238, 0.89);
     width: 220px;
+    height: 120px;
 }
 
 .imageMirror {
@@ -145,6 +146,33 @@ imageOriginal img {
 
 .sectionOne div:last-child>span {
     padding-top: 8px;
+}
+
+.sectionTwo ul {
+    list-style-type: none; 
+    font-size: 13px; 
+    padding: 0 10px;
+}
+
+.sectionTwo ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+containerMinMax {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.minMax {
+    display: inline-block;
+    width: 70px;
+    height: 15px;
+    background: #F3C62B;
+    border-radius: 20px;
+    margin: 0 5px;
 }
 
 /* end layout statistic -- second section col-6 ( extend statistics  with chart ) */

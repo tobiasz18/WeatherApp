@@ -10,15 +10,19 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 })
 export class WeatherComponent implements OnInit {
     urlData = 'https://api.openweathermap.org/data/2.5/weather'; // Current weather data
-    urlHourlyData = 'pro.openweathermap.org/data/2.5/forecast/hourly';  // Hourly forecast
+    urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?'; 
+    url16Days = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // daily weather on 16 days but with limit on 6
     weather;
-    WeatherHourlu;
     img;
     currentCity; // variable for child component (line-chart)
+    sunrise;
+    sunset;
+    weeklyWeather;
+    currentWeather;
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
-        this.getLocation();  
+        this.getLocation();
     }
 
     getLocation() {
@@ -35,6 +39,7 @@ export class WeatherComponent implements OnInit {
                 this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
                 console.log("DATA", data)
                 this.currentCity = data.name; // for child component
+                this.getByCityName5Days(data.name);
             })
         });
     }
@@ -42,10 +47,23 @@ export class WeatherComponent implements OnInit {
     getByCityName(city) {
         this.api.sendGETRequestByCityName(city, this.urlData).subscribe((data: any) => {
             this.weather = data;
-            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;      
+            this.img = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         })
-        this.currentCity = city; // for child component
+        this.currentCity = city; // for child component    
+        this.getByCityName5Days(city) 
     }
+
+
+    getByCityName5Days(city) {
+        this.api.sendGETRequest16Days(city, this.url16Days).subscribe((data: any) => {
+            console.log('data from another zrodła', data)
+            this.weeklyWeather = data.data.slice(1);
+            this.currentWeather = data.data[0]
+            console.log(data, 'sss', this.currentWeather)
+        })
+
+    }
+
 }
 
 
