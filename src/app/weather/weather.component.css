@@ -1,3 +1,11 @@
+.container {
+    max-width: 980px;
+}
+
+section article:first-child {
+    margin-bottom: 12px;
+}
+
 /* start  top bar  */
 
 .bg-light {
@@ -50,7 +58,7 @@
 
 /* start layout statistic -- first section col-12 (main statistics) */
 
-.col12_main {
+.long-section {
     background: #46A7EE;
     color: #fff;
     font-weight: 500;
@@ -60,12 +68,16 @@
     position: relative;
 }
 
+.image-container>div {
+    position: absolute;
+}
+
 .imageOriginal {
     position: absolute;
     right: 0;
     z-index: 1;
     background: rgba(70, 167, 238, 0.89);
-    width: 220px;
+    width: 160px;
     height: 120px;
 }
 
@@ -102,23 +114,50 @@ imageOriginal img {
 
 /* start layout statistic -- second section col-6 ( extend statistics  with chart  ) */
 
-.sectionOne {
-    height: 100px;
+.chart {
     background: #FFFFFF;
 }
 
-.sectionOne>div {
+.containerRightBlock {
+    padding-left: 12px;
+}
+
+.icons-section {
+    height: 90px;
+    background: #FFFFFF;
+    margin-bottom: 12px;
+}
+
+.icons-section>div {
     flex: 1;
     font-size: 12px;
     line-height: 0;
     color: #6d6d6da8;
 }
 
-.secondDiv {
+.icons-section>div span {
+    padding-left: 6px;
+}
+
+.icons-section div:last-child>span {
+    padding-top: 8px;
+}
+
+.weekly-head-section {
+    height: 90px;
+    background: #FFFFFF;
+    margin-bottom: 12px;
+}
+
+.weekly-head-section div {
+    flex: 1;
+}
+
+.second-d {
     position: relative;
 }
 
-.secondDiv:before {
+.second-d:before {
     content: "";
     position: absolute;
     left: 0;
@@ -127,11 +166,11 @@ imageOriginal img {
     background: #e2f0fd;
 }
 
-.thirdDiv {
+.third-div {
     position: relative;
 }
 
-.thirdDiv:before {
+.third-div:before {
     content: "";
     position: absolute;
     left: 0;
@@ -140,39 +179,68 @@ imageOriginal img {
     background: #e2f0fd;
 }
 
-.sectionOne>div span {
-    padding-left: 6px;
+.weekly-section {
+    padding-left: 12px;
+    padding-top: 10px;
+    height: 195px;
+    background: #FFFFFF
 }
 
-.sectionOne div:last-child>span {
-    padding-top: 8px;
+.weekly-section>div:first-child {
+    padding: 5px 0;
 }
 
-.sectionTwo ul {
-    list-style-type: none; 
-    font-size: 13px; 
-    padding: 0 10px;
+.weekly-section>div {
+    display: flex;
+    font-size: 11px;
 }
 
-.sectionTwo ul li {
+.weekly-section>div>div {
+    flex: 1;
+}
+
+.today-span {
+    font-size: 18px;
+}
+
+.min-max-temp {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    padding-left: 110px;
 }
 
-containerMinMax {
+.min-max-temp-today {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    padding-left: 123px;
 }
 
-.minMax {
+.min-max-div {
     display: inline-block;
-    width: 70px;
+    max-width: 70px;
     height: 15px;
     background: #F3C62B;
     border-radius: 20px;
     margin: 0 5px;
+    width: 70px;
+}
+
+.weatherToday {
+    padding-left: 13px;
+}
+
+.weelky-title {
+    display: flex;
+    align-items: center;
+    color: #219df5;
+    font-size: 15px;
+    padding-left: 40px;
+}
+
+.weekly-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* end layout statistic -- second section col-6 ( extend statistics  with chart ) */

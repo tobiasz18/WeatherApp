@@ -1,10 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
 import { WeatherService } from '../../weather.service';
-
-
 
 @Component({
     selector: 'app-line-chart',
@@ -13,16 +10,12 @@ import { WeatherService } from '../../weather.service';
 })
 
 export class LineChartComponent implements OnInit {
-    @Input() childFn: string
-
     urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
     WeatherHourlu;
-    lineChartLegend = true;
+    lineChartLegend = false;
     lineChartPlugins = [];
     lineChartType = 'line';
-    barChartData = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }
-    ];
+    barChartData = [{ data: [65, 59, 80, 81, 56, 55, 40], label: '' }];
     lineChartLabels: Label[] = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
     lineChartOptions = {
         responsive: true,
@@ -46,12 +39,11 @@ export class LineChartComponent implements OnInit {
 
     @Input('city') cityName: string;
 
-    constructor(private api: WeatherService) {}
-    
-    ngOnInit() {}
+    constructor(private api: WeatherService) { }
+
+    ngOnInit() { }
 
     ngOnChanges(e) {
-        console.log('currentValue', e)
         this.getByCityNames(e.cityName.currentValue)
     }
 
@@ -62,25 +54,25 @@ export class LineChartComponent implements OnInit {
             let Labels = []
             let ChartData = []
             for (let i = 0; i < 6; i++) {
-                let d = new Date(data.list[i].dt * 1000);    
+                let d = new Date(data.list[i].dt * 1000);
                 let h = this.addZero(d.getUTCHours());
                 let m = this.addZero(d.getUTCMinutes());
 
-                let template = [h + ":" + m ];     
+                let template = [h + ":" + m];
                 let degreesTemplate = data.list[i].main.temp.toFixed(0);
 
                 Labels = [...Labels, ...template];
 
-                ChartData = [...ChartData, degreesTemplate ]
+                ChartData = [...ChartData, degreesTemplate]
             }
             this.barChartData = [{ data: ChartData, label: 'Series A' }];
             this.lineChartLabels = [...Labels];
         })
     }
 
-     addZero(i) {
+    addZero(i) {
         if (i < 10) {
-          i = "0" + i;
+            i = "0" + i;
         }
         return i;
     }
