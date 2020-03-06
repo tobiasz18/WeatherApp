@@ -19,6 +19,7 @@ export class WeatherComponent implements OnInit {
     min;
     max;
     fakeZero; 
+    flagLocation;
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
@@ -38,6 +39,7 @@ export class WeatherComponent implements OnInit {
                 this.weather = data;
                 this.currentCity = data.name; // for child component
                 this.getByCityName5Days(data.name);
+                this.flagLocation = true;
             })
         });
     }
@@ -47,7 +49,8 @@ export class WeatherComponent implements OnInit {
             this.weather = data;
         })
         this.currentCity = city; // for child component    
-        this.getByCityName5Days(city) 
+        this.getByCityName5Days(city);
+        this.flagLocation = false;
     }
 
     getByCityName5Days(city) {
