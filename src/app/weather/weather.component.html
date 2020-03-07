@@ -63,7 +63,7 @@
                             <span>weekly Weather</span>
                         </div>
                         <div class="col-4 weekly-img">
-                            <img width="80px" src="../../assets/weeklyIcon.png" alt="">
+                            <img src="../../assets/weeklyIcon.png" alt="">
                         </div>
                     </div>
                 </aside>
@@ -75,9 +75,9 @@
                             <span class="today-span">Today</span>
                         </div>
                         <div class="min-max-temp-today">
-                            {{ this.min }}
+                            {{ this.min }}°c
                             <div class="min-max-div"></div>
-                            {{ this.max }}
+                            {{ this.max }}°c
                         </div>
                     </div>
                     <div class="weatherToday" *ngFor="let weather of weeklyWeather">
@@ -85,12 +85,12 @@
                             <img width="25px"
                                 src="https://www.weatherbit.io/static/img/icons/{{weather.weather.icon}}.png"
                                 alt="r01d.png">
-                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}
+                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}°c
                         </div>
                         <div class="min-max-temp">
-                            {{ weather.min_temp.toFixed(0) }}
+                            {{ weather.min_temp.toFixed(0) }}°c
                             <div class="min-max-div"></div>
-                            {{ weather.max_temp.toFixed(0)  }}
+                            {{ weather.max_temp.toFixed(0)  }}°c
                         </div>
                     </div>
                 </aside>

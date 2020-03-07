@@ -70,7 +70,7 @@ section article:first-child {
 /* start layout statistic -- first section col-12 (main statistics) */
 
 .long-section {
-    background: #46A7EE;
+    background: #299ff5;
     color: #fff;
     font-weight: 500;
 }
@@ -87,7 +87,7 @@ section article:first-child {
     position: absolute;
     right: 0;
     z-index: 1;
-    background: rgba(70, 167, 238, 0.89);
+    background: rgba(41, 159, 245, 0.85);
     width: 160px;
     height: 120px;
 }
@@ -252,6 +252,11 @@ imageOriginal img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.weekly-img img {
+    height: 100%;
+    width: 105px;
 }
 
 /* end layout statistic -- second section col-6 ( extend statistics  with chart ) */
