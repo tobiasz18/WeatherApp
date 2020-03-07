@@ -217,13 +217,13 @@ imageOriginal img {
 .min-max-temp {
     display: flex;
     align-items: center;
-    padding-left: 110px;
+    padding-left: 80px;
 }
 
 .min-max-temp-today {
     display: flex;
     align-items: center;
-    padding-left: 123px;
+    padding-left: 90px;
 }
 
 .min-max-div {
