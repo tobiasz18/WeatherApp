@@ -20,6 +20,7 @@ export class WeatherComponent implements OnInit {
     max;
     fakeZero; 
     flagLocation;
+    locationDeined: boolean = true;
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
@@ -41,6 +42,12 @@ export class WeatherComponent implements OnInit {
                 this.getByCityName5Days(data.name);
                 this.flagLocation = true;
             })
+        }, error => {
+            console.log(error)
+            if(error.message === "User denied Geolocation") {
+                  console.log('hellow')
+                  
+            }
         });
     }
 
