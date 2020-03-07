@@ -268,6 +268,7 @@ imageOriginal img {
     font-size: 12px;
     color: #8c9aa7;
 }
+
 .loader {
     border: 3px solid #e2f0fd;
     border-radius: 50%;
@@ -277,9 +278,23 @@ imageOriginal img {
     animation: spin 0.7s linear infinite;
     margin-top: 100px;
     margin-bottom: 20px;
-  }
+}
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .containerRightBlock {
+        padding: 0;
+        margin-top: 12px;
+    }
+    .weekly-head-section {
+        display: none!important;
+    }
+}

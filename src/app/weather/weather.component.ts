@@ -9,7 +9,7 @@ import { WeatherService } from '../weather.service'
 })
 export class WeatherComponent implements OnInit {
     urlData = 'https://api.openweathermap.org/data/2.5/weather'; // Current weather data
-    urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?'; 
+    urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?';
     url16Days = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // daily weather on 16 days but with limit on 6
     weather: any;
     currentCity; // variable for child component (line-chart)
@@ -18,7 +18,7 @@ export class WeatherComponent implements OnInit {
     weeklyWeather;
     min;
     max;
-    fakeZero; 
+    fakeZero;
     flagLocation;
     locationDeined: boolean = true;
     constructor(private api: WeatherService) { }
@@ -43,10 +43,9 @@ export class WeatherComponent implements OnInit {
                 this.flagLocation = true;
             })
         }, error => {
-            console.log(error)
-            if(error.message === "User denied Geolocation") {
-                  console.log('hellow')
-                  
+            if (error.message === "User denied Geolocation") {
+                console.log('User denied Geolocation');
+                this.locationDeined = false;
             }
         });
     }
@@ -66,9 +65,6 @@ export class WeatherComponent implements OnInit {
 
             this.min = data.data[0].min_temp.toFixed(0);
             this.max = data.data[0].max_temp.toFixed(0);
-
-            console.log(data)
-
         })
     }
 }

@@ -108,7 +108,7 @@
                 <button class="btn btn-success" type="button"  (click)="getByCityName(inputValue.value)">Search</button>
             </div>
         </section>
-        <div class="loader"></div>
-        can't read current location
+        <div *ngIf="locationDeined" class="loader"></div>
+        <div *ngIf="locationDeined">can't read current location</div>
     </div>
 </ng-template>
