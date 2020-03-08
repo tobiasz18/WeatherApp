@@ -308,6 +308,6 @@ imageOriginal img {
 }
 @media (max-width: 390px) {
     .weekly-section {
-        padding: 0;
+        padding: 10px;
     }
 }
