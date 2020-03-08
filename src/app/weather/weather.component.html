@@ -29,7 +29,7 @@
                     {{ weather.weather[0].description }}
                 </p>
                 <p class="text-capitalize m-0 date">
-                    {{weather.dt * 1000 | date: 'EEEE, MMMM MM, yyyy'}}
+                    {{weather.dt * 1000 | date: 'EEEE, MMMM dd, yyyy'}}
                 </p>
                 <h1 class="text-capitalize display-4 font-weight-normal">
                     {{ weather.main.temp | number: "1.0-0" }}&#176; <span class="align-top degrees">C</span>
