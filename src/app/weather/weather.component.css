@@ -6,15 +6,29 @@ section article:first-child {
     margin-bottom: 12px;
 }
 
-/* start  top bar  */
+/* header  */
 
-.bg-light {
-    background-image: linear-gradient( #00BCD4, #03A9F4);
+header {
+    height: 100px;
 }
 
-.navbar-light .navbar-text {
+.header-title {
+    position: absolute;
+    top: 20px;
+    left: 65px;
+    color: aliceblue;
+    font-size: 15px;
+    font-family: cursive;
+}
+
+.header-title>span {
     color: #fff;
+    font-family: 'Roboto';
 }
+
+/* header  */
+
+/* start form (input button) */
 
 .fa-map-marker {
     position: absolute;
@@ -24,10 +38,6 @@ section article:first-child {
     padding-left: 10px;
     padding-top: 2px;
 }
-
-/* end top bar  */
-
-/* start form (input button) */
 
 .input-group {
     max-width: 600px;
@@ -49,7 +59,7 @@ section article:first-child {
 
 .btn {
     border-radius: 20px;
-    padding: 0 30px;
+    padding: 0 40px;
 }
 
 .input-group>.input-group-append>.btn {
@@ -61,7 +71,7 @@ section article:first-child {
     color: #fff;
     background-color: #24ca9c;
     border-color: #24ca9c;
-    font-size: 13px;
+    font-size: 11px;
     box-shadow: 0px 1px 7px 1px rgb(202, 205, 208);
 }
 
@@ -304,10 +314,14 @@ imageOriginal img {
     .weekly-section {
         padding-left: 12%;
     }
-
 }
+
 @media (max-width: 390px) {
     .weekly-section {
         padding: 10px;
+    }
+
+    header {
+        display: none;
     }
 }

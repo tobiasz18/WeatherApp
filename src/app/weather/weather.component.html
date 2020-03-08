@@ -1,9 +1,8 @@
 <header>
-    <nav class="navbar navbar-light bg-light py-3">
-        <span class="navbar-text pl-5">
-            My Weather app
-        </span>
-    </nav>
+    <svg width="500" height="130" viewBox="0 0 500 80" preserveAspectRatio="none" style="width: 100%;"> 
+    <path d="M0,0 L0,40 Q250,80 500,40 L500,0 Z" fill="#38a5f5"></path>
+    </svg>
+    <div class="header-title">My <span>Weather Forcast</span></div>
 </header>
 <article *ngIf="weather else loading" class="container">
     <section class="input-group py-5  m-auto" style="position: relative;">
@@ -53,7 +52,7 @@
                         <span>{{ weather.sys.sunset * 1000 | date: "h:mm a" }}</span>
                     </div>
                     <div class="d-flex flex-column align-items-center justify-content-center third-div">
-                        <img width="40" src="../../assets/rain.png">
+                        <img width="40" src="https://img.icons8.com/color/80/000000/wet.png">
                         <span>{{ weather.main.humidity }}%</span>
                     </div>
                 </aside>
