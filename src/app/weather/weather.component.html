@@ -79,9 +79,9 @@
                             <span class="today-span">Today</span>
                         </div>
                         <div class="min-max-temp-today">
-                            {{ this.min }}
+                            {{ this.min }}°{{ formatTemp === 'metric' ? 'c' : 'f' }}
                             <div class="min-max-div"></div>
-                            {{ this.max }}
+                            {{ this.max }}°{{ formatTemp === 'metric' ? 'c' : 'f' }}
                         </div>
                     </div>
                     <div class="weatherToday" *ngFor="let weather of weeklyWeather">
@@ -89,12 +89,12 @@
                             <img width="25px"
                                 src="https://www.weatherbit.io/static/img/icons/{{weather.weather.icon}}.png"
                                 alt="r01d.png">
-                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}
+                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'f' }}
                         </div>
                         <div class="min-max-temp">
-                            {{ weather.min_temp.toFixed(0) }}
+                            {{ weather.min_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'f' }}
                             <div class="min-max-div"></div>
-                            {{ weather.max_temp.toFixed(0)  }}
+                            {{ weather.max_temp.toFixed(0)  }}°{{ formatTemp === 'metric' ? 'c' : 'f' }}
                         </div>
                     </div>
                 </aside>
