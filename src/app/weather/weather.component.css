@@ -125,10 +125,19 @@ imageOriginal img {
     font-size: 14px;
 }
 
-.degrees {
-    line-height: 2;
+.tempFormat { 
+    padding-top: 8px;
+    margin-left: 93px;
     font-size: 20px;
-    color: #ffeb00;
+}
+
+.tempFormat span:nth-child(2) {
+    padding: 0 3px;
+}
+
+.tempFormat span:first-child, 
+.tempFormat span:last-child {
+    cursor: pointer;
 }
 
 /* end layout statistic -- first section col-12 (main statistics) */

@@ -12,29 +12,30 @@ export class WeatherService {
 
     constructor(private httpClient: HttpClient) { }
     //lon, lat
-    sendGETRequestByGeoCoords(log, lat, url:string) {
+    sendGETRequestByGeoCoords(log, lat, url:string, matric) {
         let params = new HttpParams();
         params = params.append('lon', log);
         params = params.append('lat', lat);
-        params = params.append('units', 'metric');
+        params = params.append('units', matric);
         params = params.append('appid', this.keyApi);
 
         return this.httpClient.get(url, { params: params });
     }
 
-    sendGETRequestByCityName(city: string ,url:string) {
+    sendGETRequestByCityName(city: string ,url:string, matric) {
         let params = new HttpParams();
         params = params.append('q', city);
-        params = params.append('units', 'metric');
+        params = params.append('units', matric);
         params = params.append('appid', this.keyApi);
 
         return this.httpClient.get(url, { params: params });
     }
 
-    sendGETRequest16Days(city: string ,url:string) {
+    sendGETRequest16Days(city: string ,url:string, matric) {
         let params = new HttpParams();
         params = params.append('city', city);
         params = params.append('days', '6');
+        params = params.append('units', matric);
         params = params.append('key', this.kepApi2); 
 
         return this.httpClient.get(url, { params: params });

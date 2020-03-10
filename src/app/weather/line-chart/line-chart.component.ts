@@ -1,20 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Color, Label } from 'ng2-charts';
-
 import { WeatherService } from '../../weather.service';
 
 @Component({
     selector: 'app-line-chart',
-    templateUrl: './line-chart.component.html',
-    styleUrls: ['./line-chart.component.css']
+    templateUrl: './line-chart.component.html'
 })
 
 export class LineChartComponent implements OnInit {
-    urlHourlyData = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
-    WeatherHourlu;
-    lineChartLegend = false;
-    lineChartPlugins = [];
-    lineChartType = 'line';
+    urlHourlyData: string = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
+    WeatherHourlu: object;
+    lineChartLegend: boolean = false;
+    lineChartType: string  = 'line';
     barChartData = [{ data: [65, 59, 80, 81, 56, 55, 40], label: '' }];
     lineChartLabels: Label[] = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
     lineChartOptions = {
@@ -37,18 +34,19 @@ export class LineChartComponent implements OnInit {
         },
     ];
 
-    @Input('city') cityName: string;
-
     constructor(private api: WeatherService) { }
+    @Input() format: any;
+    @Input() city: string;
 
     ngOnInit() { }
 
-    ngOnChanges(e) {
-        this.getByCityNames(e.cityName.currentValue)
+    ngOnChanges(changes) {
+        this.getByCityNames(this.city, this.format);
+        console.log(changes, this.format)
     }
 
-    getByCityNames(city) {
-        this.api.sendGETRequestByCityName(city, this.urlHourlyData).subscribe((data: any) => {
+    getByCityNames(city, m) {
+        this.api.sendGETRequestByCityName(city, this.urlHourlyData, m).subscribe((data: any) => {
             this.WeatherHourlu = data.list;
 
             let Labels = []
@@ -57,15 +55,13 @@ export class LineChartComponent implements OnInit {
                 let d = new Date(data.list[i].dt * 1000);
                 let h = this.addZero(d.getUTCHours());
                 let m = this.addZero(d.getUTCMinutes());
-
                 let template = [h + ":" + m];
                 let degreesTemplate = data.list[i].main.temp.toFixed(0);
 
                 Labels = [...Labels, ...template];
-
                 ChartData = [...ChartData, degreesTemplate]
             }
-            this.barChartData = [{ data: ChartData, label: 'C°' }];
+            this.barChartData = [{ data: ChartData, label: 'temperature degrees:' }];
             this.lineChartLabels = [...Labels];
         })
     }

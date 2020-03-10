@@ -10,7 +10,7 @@
         <input type="text" class="form-control px-5" value="{{currentCity}}" (keyup.enter)="getByCityName(inputValue.value)" placeholder="Enter city name" #inputValue
             aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-success" type="button"  (click)="getByCityName(inputValue.value)">Search</button>
+            <button class="btn btn-success" type="button" (click)="getByCityName(inputValue.value)">Search</button>
         </div>
     </section>
     <section class="container">
@@ -31,15 +31,20 @@
                 <p class="text-capitalize m-0 date">
                     {{weather.dt * 1000 | date: 'EEEE, MMMM dd, yyyy'}}
                 </p>
-                <h1 class="text-capitalize display-4 font-weight-normal">
-                    {{ weather.main.temp | number: "1.0-0" }}&#176; <span class="align-top degrees">C</span>
+                <h1 style="float: left;" class="text-capitalize display-4 font-weight-normal">
+                    {{ weather.main.temp | number: "1.0-0" }}&#176;           
                 </h1>
+                <div class="tempFormat">
+                    <span (click)="changeFormat('metric')" [style.color]="formatTemp === 'metric' ? '#ffe69f' : '#fff'" class="">C</span>
+                    <span>|</span>
+                    <span (click)="changeFormat('imperial')" [style.color]="formatTemp === 'metric' ? '#fff' : '#ffe69f'" class="">F</span>
+                </div>
             </div>
         </article>
         <article class="row">
             <!-- extend statistics  with chart  -->
             <section class="col-md-7 col-sm-12 chart">
-                <app-line-chart [city]="currentCity"></app-line-chart>
+                <app-line-chart [city]="currentCity" [format]="formatTemp"></app-line-chart>
             </section>
             <section class="col-md-5 col-sm-12 pr-0 containerRightBlock">
                 <aside class="d-flex icons-section">
@@ -74,9 +79,9 @@
                             <span class="today-span">Today</span>
                         </div>
                         <div class="min-max-temp-today">
-                            {{ this.min }}°c
+                            {{ this.min }}
                             <div class="min-max-div"></div>
-                            {{ this.max }}°c
+                            {{ this.max }}
                         </div>
                     </div>
                     <div class="weatherToday" *ngFor="let weather of weeklyWeather">
@@ -84,12 +89,12 @@
                             <img width="25px"
                                 src="https://www.weatherbit.io/static/img/icons/{{weather.weather.icon}}.png"
                                 alt="r01d.png">
-                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}°c
+                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}
                         </div>
                         <div class="min-max-temp">
-                            {{ weather.min_temp.toFixed(0) }}°c
+                            {{ weather.min_temp.toFixed(0) }}
                             <div class="min-max-div"></div>
-                            {{ weather.max_temp.toFixed(0)  }}°c
+                            {{ weather.max_temp.toFixed(0)  }}
                         </div>
                     </div>
                 </aside>
