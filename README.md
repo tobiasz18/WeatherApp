@@ -12,7 +12,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
  
 ## Weather app with Angular 
 
-![imageWeather](https://i.imgur.com/slzDQ9t.png)
+![imageWeather](https://i.imgur.com/7Ce8fYF.png)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
 ## Build
