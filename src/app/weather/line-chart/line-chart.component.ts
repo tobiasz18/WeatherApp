@@ -40,9 +40,8 @@ export class LineChartComponent implements OnInit {
 
     ngOnInit() { }
 
-    ngOnChanges(changes) {
+    ngOnChanges() {
         this.getByCityNames(this.city, this.format);
-        console.log(changes, this.format)
     }
 
     getByCityNames(city, m) {
