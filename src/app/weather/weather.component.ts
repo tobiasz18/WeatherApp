@@ -20,7 +20,7 @@ export class WeatherComponent implements OnInit {
     tempFormatWeekly: string;
     flagLocation: boolean = true;
     locationDeined: boolean = true;
-    
+
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
@@ -52,7 +52,6 @@ export class WeatherComponent implements OnInit {
     }
 
     getByCityName(city) {
-        console.log('this format', this.formatTemp)
         this.api.sendGETRequestByCityName(city, this.urlData, this.formatTemp).subscribe((data: any) => {
             this.weather = data;
         });
