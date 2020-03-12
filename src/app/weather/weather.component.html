@@ -1,13 +1,14 @@
 <header>
-    <svg width="500" height="130" viewBox="0 0 500 80" preserveAspectRatio="none" style="width: 100%;"> 
-    <path d="M0,0 L0,40 Q250,80 500,40 L500,0 Z" fill="#38a5f5"></path>
+    <svg width="500" height="130" viewBox="0 0 500 80" preserveAspectRatio="none" style="width: 100%;">
+        <path d="M0,0 L0,40 Q250,80 500,40 L500,0 Z" fill="#38a5f5"></path>
     </svg>
     <div class="header-title">My <span>Weather Forcast</span></div>
 </header>
 <article *ngIf="weather else loading" class="container">
     <section class="input-group py-5  m-auto" style="position: relative;">
-        <i *ngIf="flagLocation" class="fa fa-map-marker" ></i>
-        <input type="text" class="form-control px-5" value="{{currentCity}}" (keyup.enter)="getByCityName(inputValue.value)" placeholder="Enter city name" #inputValue
+        <i *ngIf="flagLocation" class="fa fa-map-marker"></i>
+        <input type="text" class="form-control px-5" value="{{currentCity}}"
+            (keyup.enter)="getByCityName(inputValue.value)" placeholder="Enter city name" #inputValue
             aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-success" type="button" (click)="getByCityName(inputValue.value)">Search</button>
@@ -24,7 +25,7 @@
                     <img src="http://openweathermap.org/img/wn/{{weather.weather[0].icon}}@2x.png" alt="01d.png" />
                 </div>
             </div>
-            <div class="col-6 mx-auto text-left pt-3">
+            <div class="col-6 mx-auto text-left pt-3 px-0">
                 <p class="text-capitalize m-0 desc">
                     {{ weather.weather[0].description }}
                 </p>
@@ -32,12 +33,14 @@
                     {{weather.dt * 1000 | date: 'EEEE, MMMM dd, yyyy'}}
                 </p>
                 <h1 style="float: left;" class="text-capitalize display-4 font-weight-normal">
-                    {{ weather.main.temp | number: "1.0-0" }}&#176;           
+                    {{ weather.main.temp | number: "1.0-0" }}&#176;
                 </h1>
                 <div class="tempFormat">
-                    <span (click)="changeFormat('metric')" [style.color]="formatTemp === 'metric' ? '#ffe69f' : '#fff'" class="">C</span>
+                    <span (click)="changeFormat('metric')" [style.color]="formatTemp === 'metric' ? '#ffe69f' : '#fff'"
+                        class="">C</span>
                     <span>|</span>
-                    <span (click)="changeFormat('imperial')" [style.color]="formatTemp === 'metric' ? '#fff' : '#ffe69f'" class="">F</span>
+                    <span (click)="changeFormat('imperial')"
+                        [style.color]="formatTemp === 'metric' ? '#fff' : '#ffe69f'" class="">F</span>
                 </div>
             </div>
         </article>
@@ -72,47 +75,48 @@
                     </div>
                 </aside>
                 <aside class="weekly-section">
-                    <div>
+                    <div class="weekly-col-today">
                         <div>
                             <img width="35px" src="http://openweathermap.org/img/wn/{{weather.weather[0].icon}}@2x.png"
                                 alt="r01d.png">
-                            <span class="today-span">Today</span>
+                            <span>Today</span>
                         </div>
-                        <div class="min-max-temp-today">
-                            {{ this.min }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
+                        <div class="min-max-temp">
+                            <div> {{ this.min }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
                             <div class="min-max-div"></div>
-                            {{ this.max }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
+                            <div> {{ this.max }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
                         </div>
                     </div>
-                    <div class="weatherToday" *ngFor="let weather of weeklyWeather">
+                    <div class="weekly-col" *ngFor="let weather of weeklyWeather">
                         <div>
                             <img width="25px"
                                 src="https://www.weatherbit.io/static/img/icons/{{weather.weather.icon}}.png"
                                 alt="r01d.png">
-                            {{ weather.valid_date | date: "E" }}, {{ weather.temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
+                            {{ weather.valid_date | date: "E" }},
+                            {{ weather.temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
                         </div>
                         <div class="min-max-temp">
-                            {{ weather.min_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
+                            <div> {{ weather.min_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
                             <div class="min-max-div"></div>
-                            {{ weather.max_temp.toFixed(0)  }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
+                            <div> {{ weather.max_temp.toFixed(0)  }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
                         </div>
                     </div>
                 </aside>
             </section>
         </article>
-    </section>  
+    </section>
 </article>
-<ng-template  #loading>
+<ng-template #loading>
     <div class="container-ng-template">
         <section class="input-group py-5  m-auto" style="position: relative;">
-            <i *ngIf="flagLocation" class="fa fa-map-marker" ></i>
-            <input type="text" class="form-control px-5" value="{{currentCity}}" placeholder="Enter city name" #inputValue
-                aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <i *ngIf="flagLocation" class="fa fa-map-marker"></i>
+            <input type="text" class="form-control px-5" value="{{currentCity}}" placeholder="Enter city name"
+                #inputValue aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-success" type="button"  (click)="getByCityName(inputValue.value)">Search</button>
+                <button class="btn btn-success" type="button" (click)="getByCityName(inputValue.value)">Search</button>
             </div>
         </section>
         <div *ngIf="locationDeined" class="loader"></div>
-      <!-- <div *ngIf="locationDeined">can't read current location</div> -->
+        <!-- <div *ngIf="locationDeined">can't read current location</div> -->
     </div>
 </ng-template>

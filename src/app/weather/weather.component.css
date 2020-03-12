@@ -98,14 +98,14 @@ header {
     right: 0;
     z-index: 1;
     background: rgba(41, 159, 245, 0.85);
-    width: 160px;
+    width: 140px;
     height: 120px;
 }
 
 .imageMirror {
     position: absolute;
-    right: 40px;
-    top: 0px;
+    right: 22px;
+    top: 18px;
 }
 
 imageOriginal img {
@@ -125,7 +125,7 @@ imageOriginal img {
     font-size: 14px;
 }
 
-.tempFormat { 
+.tempFormat {
     padding-top: 8px;
     margin-left: 93px;
     font-size: 20px;
@@ -135,8 +135,7 @@ imageOriginal img {
     padding: 0 3px;
 }
 
-.tempFormat span:first-child, 
-.tempFormat span:last-child {
+.tempFormat span:first-child, .tempFormat span:last-child {
     cursor: pointer;
 }
 
@@ -210,40 +209,23 @@ imageOriginal img {
 }
 
 .weekly-section {
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 12px;
-    height: 195px;
-    background: #FFFFFF
-}
-
-.weekly-section>div:first-child {
+    background: #fff;
     padding: 5px 0;
-}
-
-.weekly-section>div {
-    display: flex;
     font-size: 11px;
 }
 
-.weekly-section>div>div {
-    flex: 1;
-}
-
-.today-span {
-    font-size: 18px;
-}
-
 .min-max-temp {
-    display: flex;
-    align-items: center;
-    padding-left: 80px;
+    width: 60%;
+    text-align: right;
 }
 
-.min-max-temp-today {
-    display: flex;
-    align-items: center;
-    padding-left: 95px;
+.min-max-temp div {
+    display: inline-block;
+}
+
+.min-max-temp div:first-child, .min-max-temp div:last-child {
+    width: 40px;
+    text-align: center;
 }
 
 .min-max-div {
@@ -256,8 +238,13 @@ imageOriginal img {
     width: 70px;
 }
 
-.weatherToday {
-    padding-left: 13px;
+.weekly-col, .weekly-col-today {
+    display: flex;
+    justify-content: space-around;
+}
+
+.weekly-col-today div:last-child {
+    padding-top: 7px;
 }
 
 .weelky-title {
@@ -320,15 +307,14 @@ imageOriginal img {
 
 @media (min-width: 490px) and (max-width: 767.98px) {
     .weekly-section {
-        padding-left: 12%;
+        /* padding-left: 12%;*/
     }
 }
 
 @media (max-width: 390px) {
     .weekly-section {
-        padding: 10px;
+        /*  padding: 10px;*/
     }
-
     header {
         display: none;
     }
