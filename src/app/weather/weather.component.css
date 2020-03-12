@@ -97,9 +97,9 @@ header {
     position: absolute;
     right: 0;
     z-index: 1;
-    background: rgba(41, 159, 245, 0.85);
+    background: rgba(41, 159, 245, 0.88);
     width: 140px;
-    height: 120px;
+    height: 124px;
 }
 
 .imageMirror {
