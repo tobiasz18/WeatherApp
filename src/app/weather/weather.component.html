@@ -82,9 +82,9 @@
                             <span>Today</span>
                         </div>
                         <div class="min-max-temp">
-                            <div> {{ this.min }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
+                            <div>{{ this.min }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
                             <div class="min-max-div"></div>
-                            <div> {{ this.max }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
+                            <div>{{ this.max }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
                         </div>
                     </div>
                     <div class="weekly-col" *ngFor="let weather of weeklyWeather">
@@ -96,9 +96,9 @@
                             {{ weather.temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}
                         </div>
                         <div class="min-max-temp">
-                            <div> {{ weather.min_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
+                            <div>{{ weather.min_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
                             <div class="min-max-div"></div>
-                            <div> {{ weather.max_temp.toFixed(0)  }}°{{ formatTemp === 'metric' ? 'c' : 'F' }} </div>
+                            <div>{{ weather.max_temp.toFixed(0)  }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
                         </div>
                     </div>
                 </aside>
