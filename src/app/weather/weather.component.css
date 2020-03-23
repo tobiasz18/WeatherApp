@@ -211,7 +211,18 @@ imageOriginal img {
 .weekly-section {
     background: #fff;
     padding: 5px 0;
-    font-size: 11px;
+    font-size: 10px;
+    color: #4c4b4b;
+}
+
+.weekly-col-today > div, 
+.weekly-col > div {
+    min-width: 77px;
+}
+
+.weekly-col-today {
+    font-weight: 700;
+    color: #000000;
 }
 
 .min-max-temp {
@@ -234,7 +245,6 @@ imageOriginal img {
     height: 15px;
     background: #F3C62B;
     border-radius: 20px;
-    margin: 0 5px;
     width: 70px;
 }
 
