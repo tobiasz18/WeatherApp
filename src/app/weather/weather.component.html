@@ -4,7 +4,7 @@
     </svg>
     <div class="header-title">My <span>Weather Forcast</span></div>
 </header>
-<article *ngIf="weather else loading" class="container">
+<article *ngIf="weather && weeklyWeather else loading" class="container">
     <section class="input-group py-5  m-auto" style="position: relative;">
         <i *ngIf="flagLocation" class="fa fa-map-marker"></i>
         <input type="text" class="form-control px-5" value="{{currentCity}}"
