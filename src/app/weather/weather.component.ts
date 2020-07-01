@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service'
 
-
 @Component({
     selector: 'app-weather',
     templateUrl: './weather.component.html',
@@ -39,7 +38,6 @@ export class WeatherComponent implements OnInit {
 
             this.api.sendGETRequestByGeoCoords(longitude, latitude, this.urlData, this.formatTemp).subscribe((data: any) => {
                 this.weather = data;
-                console.log(data)
                 this.currentCity = data.name; 
                 this.getByCityName5Days(data.name);
                 this.flagLocation = true;
@@ -71,7 +69,6 @@ export class WeatherComponent implements OnInit {
             this.weeklyWeather = data.data.slice(1);
             this.min = data.data[0].min_temp.toFixed(0);
             this.max = data.data[0].max_temp.toFixed(0);
-            console.log('data2', data)
         });
     }
 
