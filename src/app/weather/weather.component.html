@@ -13,7 +13,9 @@
         <div class="input-group-append">
             <button class="btn btn-success" type="button" (click)="getByCityName(inputValue.value)">Search</button>
         </div>
+        <p class="not-found-message">{{notFoundMessage}}</p>
     </section>
+ 
     <section class="container">
         <article class="row py-3 text-center long-section">
             <!-- main statistics  -->
@@ -114,16 +116,18 @@
                 #inputValue aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-success" type="button" (click)="getByCityName(inputValue.value)">Search</button>
-            </div>
+            </div>         
         </section>
+        <p class="not-found-message">{{notFoundMessage}}</p>
         <!-- <div *ngIf="locationDeined">can't read current location</div> -->
     </div>
     <!--   <div *ngIf="locationDeined else content" class="loader"></div> -->
     <div class="replacement-content">
         <h2>
-            Welcom in Weather forecast
+            Welcom in Weather Forecast
         </h2>
-        <p>Turn on you location to better experience app</p>
+        <p>For a better experience, turn on device location in your browser </p>
         <button class="button-location" (click)="getLocation()">Turn on location</button>
     </div>
 </ng-template>
+

@@ -1,5 +1,6 @@
 .container {
     max-width: 980px;
+    position: relative;
 }
 
 section article:first-child {
@@ -70,6 +71,8 @@ header {
 .input-group>.input-group-append>.btn {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .btn-success {
@@ -324,6 +327,7 @@ imageOriginal img {
     flex-direction: column;
     font-size: 12px;
     color: #8c9aa7;
+    position: relative;
 }
 
 .loader {
@@ -335,6 +339,19 @@ imageOriginal img {
     animation: spin 0.7s linear infinite;
     margin-top: 100px;
     margin-bottom: 20px;
+}
+
+.not-found-message {
+    position: absolute;
+    bottom: 15px;
+    font-size: 12px;
+    color: #8c9aa7;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    text-align: center;
 }
 
 @keyframes spin {
@@ -353,6 +370,10 @@ imageOriginal img {
     }
     .weekly-head-section {
         display: none!important;
+    }
+    .container-ng-template,
+    .replacement-content {
+        padding: 15px;
     }
 }
 

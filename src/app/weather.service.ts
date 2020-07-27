@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { HttpParams } from "@angular/common/http";
 
+import { catchError } from 'rxjs/operators';
+
+import { throwError } from 'rxjs';
+
+
 @Injectable({
     providedIn: 'root'
 })
@@ -11,6 +16,11 @@ export class WeatherService {
     kepApi2 = 'a42dd92cab5f40c49a0b67f304d63cc4';
 
     constructor(private httpClient: HttpClient) { }
+
+    private static _handleError(err: HttpErrorResponse | any) {
+        return throwError(err.error.message);
+    }
+    
     //lon, lat
     sendGETRequestByGeoCoords(log, lat, url:string, matric) {
         let params = new HttpParams();
@@ -19,7 +29,9 @@ export class WeatherService {
         params = params.append('units', matric);
         params = params.append('appid', this.keyApi);
 
-        return this.httpClient.get(url, { params: params });
+        return this.httpClient
+            .get(url, { params: params })
+            .pipe(catchError(WeatherService._handleError));
     }
 
     sendGETRequestByCityName(city: string ,url:string, matric) {
@@ -28,7 +40,10 @@ export class WeatherService {
         params = params.append('units', matric);
         params = params.append('appid', this.keyApi);
 
-        return this.httpClient.get(url, { params: params });
+        return this.httpClient
+            .get(url, { params: params })
+            .pipe(catchError(WeatherService._handleError));
+        
     }
 
     sendGETRequest16Days(city: string ,url:string, matric) {
@@ -38,7 +53,9 @@ export class WeatherService {
         params = params.append('units', matric);
         params = params.append('key', this.kepApi2); 
 
-        return this.httpClient.get(url, { params: params });
+        return this.httpClient
+            .get(url, { params: params })
+            .pipe(catchError(WeatherService._handleError));
     }
 }
 

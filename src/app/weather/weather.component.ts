@@ -12,7 +12,7 @@ export class WeatherComponent implements OnInit {
     url16Days: string = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // daily weather on 16 days but with limit on 6
     weather: any;
     weeklyWeather: object;
-    currentCity: string; 
+    currentCity: string = '';
     currentCityGeo: string;
     min: number;
     max: number;
@@ -20,12 +20,12 @@ export class WeatherComponent implements OnInit {
     tempFormatWeekly: string;
     flagLocation: boolean = true;
     locationDeined: boolean = true;
+    notFoundMessage: string = '';
 
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
         this.formatTemp = 'metric';
-       
     }
 
     getLocation() {
@@ -40,10 +40,11 @@ export class WeatherComponent implements OnInit {
 
             this.api.sendGETRequestByGeoCoords(longitude, latitude, this.urlData, this.formatTemp).subscribe((data: any) => {
                 this.weather = data;
-                this.currentCity = data.name; 
+                this.currentCity = data.name;
                 this.getByCityName5Days(data.name);
                 this.flagLocation = true;
                 this.currentCityGeo = data.name;
+                this.notFoundMessage = ''
             });
         }, error => {
             if (error.message === "User denied Geolocation") {
@@ -55,16 +56,27 @@ export class WeatherComponent implements OnInit {
     }
 
     getByCityName(city) {
-        this.api.sendGETRequestByCityName(city, this.urlData, this.formatTemp).subscribe((data: any) => {
-            this.weather = data;
-        });
-        this.currentCity = city;   
-        this.getByCityName5Days(city);
-        this.flagLocation = false;
+        if (city === '') {
+            this.notFoundMessage = ''
+        } else {
+            this.api.sendGETRequestByCityName(city, this.urlData, this.formatTemp).subscribe((data: any) => {
+                this.weather = data;
+
+            }, error => {
+                console.log('error', error);
+                this.notFoundMessage = `City not found`
+            });
+
+            this.currentCity = city;
+            this.getByCityName5Days(city);
+            this.flagLocation = false;
+            this.notFoundMessage = ''
+        }
+
     }
 
     getByCityName5Days(city) {
-        if(this.formatTemp === 'metric') {
+        if (this.formatTemp === 'metric') {
             this.tempFormatWeekly = 'M'
         } else {
             this.tempFormatWeekly = 'I'
@@ -73,6 +85,8 @@ export class WeatherComponent implements OnInit {
             this.weeklyWeather = data.data.slice(1);
             this.min = data.data[0].min_temp.toFixed(0);
             this.max = data.data[0].max_temp.toFixed(0);
+        }, error => {
+            console.log(error)
         });
     }
 
@@ -80,8 +94,10 @@ export class WeatherComponent implements OnInit {
         this.formatTemp = format;
         this.api.sendGETRequestByCityName(this.currentCity, this.urlData, this.formatTemp).subscribe((data: any) => {
             this.weather = data;
-        });  
-        this.getByCityName5Days(this.currentCity);      
+        }, error => {
+            console.log(error)
+        });
+        this.getByCityName5Days(this.currentCity);
     }
 }
 
