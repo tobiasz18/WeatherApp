@@ -21,7 +21,11 @@ header {
     font-family: cursive;
 }
 
-.header-title>span {
+.header-title>a {
+    text-decoration: none;
+}
+
+.header-title>a>span {
     color: #fff;
     font-family: 'Roboto';
 }
@@ -37,6 +41,7 @@ header {
     font-size: 32px;
     padding-left: 10px;
     padding-top: 2px;
+    cursor: pointer;
 }
 
 .input-group {
@@ -76,6 +81,42 @@ header {
 }
 
 /* end form (input button) */
+
+/* start replacement content */
+
+.replacement-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #0072c5;
+}
+
+.replacement-content .button-location {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: transparent;
+    color: #24ca9c;
+    border-bottom-left-radius: 20px;
+    border: 2px solid #24ca9c;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.replacement-content 
+.button-location:active, 
+.button-location:focus {
+    background-color: aquamarine;
+ }
+
+ .replacement-content 
+ .button-location:hover {
+    color: #24ca9cc7;
+    border: 2px solid #24ca9cc7;
+ }
+/* end replacement content */
+
 
 /* start layout statistic -- first section col-12 (main statistics) */
 

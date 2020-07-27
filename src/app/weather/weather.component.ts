@@ -24,14 +24,15 @@ export class WeatherComponent implements OnInit {
 
     ngOnInit() {
         this.formatTemp = 'metric';
-        this.getLocation();
+       
     }
 
     getLocation() {
         if (!navigator.geolocation) {
             console.log('No support for geolocation')
+            alert('Geolocation is blocked in this browser.')
         }
-
+        console.log('hi')
         navigator.geolocation.getCurrentPosition((position) => {
             const longitude = position.coords.longitude;
             const latitude = position.coords.latitude;
@@ -45,6 +46,7 @@ export class WeatherComponent implements OnInit {
         }, error => {
             if (error.message === "User denied Geolocation") {
                 console.log('User denied Geolocation');
+                alert('Geolocation is blocked in this browser.')
                 this.locationDeined = false;
             }
         });
