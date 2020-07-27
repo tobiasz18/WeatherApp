@@ -83,6 +83,10 @@ header {
     box-shadow: 0px 1px 7px 1px rgb(202, 205, 208);
 }
 
+.search-container {
+    padding: 50px 0;
+}
+
 /* end form (input button) */
 
 /* start replacement content */
@@ -379,15 +383,26 @@ imageOriginal img {
 
 @media (min-width: 490px) and (max-width: 767.98px) {
     .weekly-section {
-        /* padding-left: 12%;*/
+        padding: 0 50px;
     }
 }
 
 @media (max-width: 390px) {
-    .weekly-section {
-        /*  padding: 10px;*/
-    }
     header {
-        display: none;
+        height: 75px;
     }
+    svg {
+        height: 100px;
+    }
+    .search-container, .input-group {
+        padding: 24px 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-success {
+        padding: 7px 35px;
+        margin-top: 5px;
+    }
+  
 }

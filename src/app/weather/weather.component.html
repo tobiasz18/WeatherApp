@@ -5,7 +5,7 @@
     <div class="header-title">My <a href="/"><span>Weather Forcast</span></a></div>
 </header>
 <article *ngIf="weather && weeklyWeather else loading" class="container">
-    <section class="input-group py-5  m-auto" style="position: relative;">
+    <section class="search-container input-group m-auto" style="position: relative;">
         <i (click)="getLocation()" class="fa fa-map-marker" [ngStyle]="{'color': currentCity === currentCityGeo ? '#0072c5' : '#dc3545'}" ></i>
         <input type="text" class="form-control px-5" value="{{currentCity}}"
             (keyup.enter)="getByCityName(inputValue.value)" placeholder="Enter city name" #inputValue
