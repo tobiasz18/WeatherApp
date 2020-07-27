@@ -13,6 +13,7 @@ export class WeatherComponent implements OnInit {
     weather: any;
     weeklyWeather: object;
     currentCity: string; 
+    currentCityGeo: string;
     min: number;
     max: number;
     formatTemp: string;
@@ -32,7 +33,7 @@ export class WeatherComponent implements OnInit {
             console.log('No support for geolocation')
             alert('Geolocation is blocked in this browser.')
         }
-        console.log('hi')
+
         navigator.geolocation.getCurrentPosition((position) => {
             const longitude = position.coords.longitude;
             const latitude = position.coords.latitude;
@@ -42,6 +43,7 @@ export class WeatherComponent implements OnInit {
                 this.currentCity = data.name; 
                 this.getByCityName5Days(data.name);
                 this.flagLocation = true;
+                this.currentCityGeo = data.name;
             });
         }, error => {
             if (error.message === "User denied Geolocation") {

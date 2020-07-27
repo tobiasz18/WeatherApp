@@ -6,7 +6,7 @@
 </header>
 <article *ngIf="weather && weeklyWeather else loading" class="container">
     <section class="input-group py-5  m-auto" style="position: relative;">
-        <i (click)="getLocation()" class="fa fa-map-marker"></i>
+        <i (click)="getLocation()" class="fa fa-map-marker" [ngStyle]="{'color': currentCity === currentCityGeo ? '#0072c5' : '#dc3545'}" ></i>
         <input type="text" class="form-control px-5" value="{{currentCity}}"
             (keyup.enter)="getByCityName(inputValue.value)" placeholder="Enter city name" #inputValue
             aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -109,7 +109,7 @@
 <ng-template #loading>
     <div class="container-ng-template">
         <section class="input-group py-5  m-auto" style="position: relative;">
-            <i (click)="getLocation()" class="fa fa-map-marker"></i>
+            <i (click)="getLocation()" class="fa fa-map-marker" [ngStyle]="{'color': currentCity === currentCityGeo ? '#0072c5' : '#dc3545'}" ></i>
             <input type="text" class="form-control px-5" value="{{currentCity}}" placeholder="Enter city name"
                 #inputValue aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">

@@ -60,7 +60,7 @@ export class LineChartComponent implements OnInit {
                 Labels = [...Labels, ...template];
                 ChartData = [...ChartData, degreesTemplate]
             }
-            this.barChartData = [{ data: ChartData, label: 'temperature degrees:' }];
+            this.barChartData = [{ data: ChartData, label: '' }];
             this.lineChartLabels = [...Labels];
         })
     }
