@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Color, Label } from 'ng2-charts';
-import { WeatherService } from '../../weather.service';
+import { WeatherService } from '../../core/services/weather.service';
+
 
 @Component({
     selector: 'app-line-chart',
@@ -8,7 +9,7 @@ import { WeatherService } from '../../weather.service';
 })
 
 export class LineChartComponent implements OnInit {
-    urlHourlyData: string = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
+    private urlHourlyData: string = 'https://api.openweathermap.org/data/2.5/forecast?';  // Hourly forecast
     WeatherHourlu: object;
     lineChartLegend: boolean = false;
     lineChartType: string  = 'line';

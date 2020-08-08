@@ -84,9 +84,9 @@
                             <span>Today</span>
                         </div>
                         <div class="min-max-temp">
-                            <div>{{ this.min }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
+                            <div>{{ weeklyWeatherToday.min_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
                             <div class="min-max-div"></div>
-                            <div>{{ this.max }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
+                            <div>{{ weeklyWeatherToday.max_temp.toFixed(0) }}°{{ formatTemp === 'metric' ? 'c' : 'F' }}</div>
                         </div>
                     </div>
                     <div class="weekly-col" *ngFor="let weather of weeklyWeather">

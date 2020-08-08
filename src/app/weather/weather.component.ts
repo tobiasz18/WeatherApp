@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../weather.service'
+import { WeatherService } from '../core/services/weather.service';
+import { CurrentWeather } from '../core/interfaces/currentlyWeather.model';
+import { RootDailyWeather, Daily } from '../core/interfaces/dailyWeather.model';
 
 @Component({
     selector: 'app-weather',
     templateUrl: './weather.component.html',
     styleUrls: ['./weather.component.css']
 })
+
 export class WeatherComponent implements OnInit {
-    urlData: string = 'https://api.openweathermap.org/data/2.5/weather'; // Current weather data
-    urlHourlyData: string = 'https://api.openweathermap.org/data/2.5/forecast?';
-    url16Days: string = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // daily weather on 16 days but with limit on 6
-    weather: any;
-    weeklyWeather: object;
+    private currentWeather: string = 'https://api.openweathermap.org/data/2.5/weather';
+    private dailyWeather: string = 'https://api.weatherbit.io/v2.0/forecast/daily?';
+    weather: CurrentWeather;
+    currentCityGeo: string; 
     currentCity: string = '';
-    currentCityGeo: string;
-    min: number;
-    max: number;
+    weeklyWeather: Daily[];
+    weeklyWeatherToday: Daily;
     formatTemp: string;
     tempFormatWeekly: string;
     flagLocation: boolean = true;
@@ -25,7 +26,7 @@ export class WeatherComponent implements OnInit {
     constructor(private api: WeatherService) { }
 
     ngOnInit() {
-        this.formatTemp = 'metric';
+        this.formatTemp = 'metric';      
     }
 
     getLocation() {
@@ -38,10 +39,10 @@ export class WeatherComponent implements OnInit {
             const longitude = position.coords.longitude;
             const latitude = position.coords.latitude;
 
-            this.api.sendGETRequestByGeoCoords(longitude, latitude, this.urlData, this.formatTemp).subscribe((data: any) => {
+            this.api.sendGETRequestByGeoCoords(longitude, latitude, this.currentWeather, this.formatTemp).subscribe((data: CurrentWeather) => {
                 this.weather = data;
                 this.currentCity = data.name;
-                this.getByCityName5Days(data.name);
+                this.getDailyWeatherByName(data.name);
                 this.flagLocation = true;
                 this.currentCityGeo = data.name;
                 this.notFoundMessage = ''
@@ -55,49 +56,45 @@ export class WeatherComponent implements OnInit {
         });
     }
 
-    getByCityName(city) {
+    getByCityName(city:string) {
         if (city === '') {
-            this.notFoundMessage = ''
+            this.notFoundMessage = '';
         } else {
-            this.api.sendGETRequestByCityName(city, this.urlData, this.formatTemp).subscribe((data: any) => {
+            this.api.sendGETRequestByCityName(city, this.currentWeather, this.formatTemp).subscribe((data: CurrentWeather) => {
                 this.weather = data;
-
             }, error => {
                 console.log('error', error);
-                this.notFoundMessage = `City not found`
+                this.notFoundMessage = `City not found`;
             });
-
             this.currentCity = city;
-            this.getByCityName5Days(city);
+            this.getDailyWeatherByName(city);
             this.flagLocation = false;
-            this.notFoundMessage = ''
+            this.notFoundMessage = '';
         }
-
     }
 
-    getByCityName5Days(city) {
+    getDailyWeatherByName(city:string) {
         if (this.formatTemp === 'metric') {
-            this.tempFormatWeekly = 'M'
+            this.tempFormatWeekly = 'M';
         } else {
-            this.tempFormatWeekly = 'I'
+            this.tempFormatWeekly = 'I';
         }
-        this.api.sendGETRequest16Days(city, this.url16Days, this.tempFormatWeekly).subscribe((data: any) => {
-            this.weeklyWeather = data.data.slice(1);
-            this.min = data.data[0].min_temp.toFixed(0);
-            this.max = data.data[0].max_temp.toFixed(0);
+        this.api.sendGETRequest16Days(city, this.dailyWeather, this.tempFormatWeekly).subscribe((data: RootDailyWeather) => {
+            this.weeklyWeather = data.data.slice(1);     
+            this.weeklyWeatherToday = data.data[0];
         }, error => {
-            console.log(error)
+            console.log(error);
         });
     }
 
-    changeFormat(format) {
+    changeFormat(format:string) {
         this.formatTemp = format;
-        this.api.sendGETRequestByCityName(this.currentCity, this.urlData, this.formatTemp).subscribe((data: any) => {
+        this.api.sendGETRequestByCityName(this.currentCity, this.currentWeather, this.formatTemp).subscribe((data: CurrentWeather) => {
             this.weather = data;
         }, error => {
-            console.log(error)
+            console.log(error);
         });
-        this.getByCityName5Days(this.currentCity);
+        this.getDailyWeatherByName(this.currentCity);
     }
 }
 
