@@ -18,7 +18,7 @@ export class WeatherService {
         return throwError(err.error.message);
     }
 
-    sendGETRequestByGeoCoords(log, lat, url: string, matric) {
+    sendGETRequestByGeoCoords(log:string, lat:string, url: string, matric: string) {
         let params = new HttpParams();
         params = params.append('lon', log);
         params = params.append('lat', lat);
@@ -30,7 +30,7 @@ export class WeatherService {
             .pipe(catchError(WeatherService._handleError));
     }
 
-    sendGETRequestByCityName(city: string, url: string, matric) {
+    sendGETRequestByCityName(city: string, url: string, matric: string) {
         let params = new HttpParams();
         params = params.append('q', city);
         params = params.append('units', matric);
@@ -41,7 +41,7 @@ export class WeatherService {
             .pipe(catchError(WeatherService._handleError));
     }
 
-    sendGETRequest16Days(city: string, url: string, matric) {
+    sendGETRequest16Days(city: string, url: string, matric: string) {
         let params = new HttpParams();
         params = params.append('city', city);
         params = params.append('days', '6');
